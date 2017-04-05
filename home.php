@@ -54,7 +54,7 @@
                 <li><a href="quiz.php"><span class="glyphicon glyphicon-education" aria-hidde="true"></span> Quiz</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="index.html" id="logoutButton"><span class="glyphicon glyphicon-remove" aria-hidde="true"></span> Logout</a></li>
+                <li><a href="logout.php"><span class="glyphicon glyphicon-remove" aria-hidde="true"></span> Logout</a></li>
                 <li>
                   <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo $_SESSION['username']; ?></a>
                 </li>
@@ -65,8 +65,7 @@
       </div>
     </div>
 
-    <!-- Carousel
-    ================================================== -->
+    <!-- ::::::::::::::::::::::: Carousel ::::::::::::::::::::::: -->
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -75,7 +74,7 @@
       <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner" role="listbox">
-      <div class="item active" style="object-first:">
+      <div class="item active">
         <img class="first-slide" src="1st.jpg" alt="First slide">
         <div class="container">
           <div class="carousel-caption">
@@ -114,7 +113,7 @@
       <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
-  </div><!-- /.carousel -->
+  </div> <!-- /.carousel -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -124,7 +123,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- ::::::::::::::::::::: jQuery and AJAX :::::::::::::::::::::: -->
+    <!-- ::::::::::::::::::::: jQuery and AJAX ::::::::::::::::::::::
     <script>
     $(document).ready(function(){
       var $item = $('.carousel .item');
@@ -149,6 +148,7 @@
       });
     });
     </script>
+-->
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
   </body>
