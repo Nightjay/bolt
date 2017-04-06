@@ -1,5 +1,9 @@
 <?php
   include("dbconfig.php");
+
+  if($_SESSION['loggedIn'] == false){
+    header('Location: /~fjp1010/bolt');
+  }
 ?>
 
 <!DOCTYPE html>
@@ -50,8 +54,8 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li><a href="create.php"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</a></li>
-                <li><a href="quiz.php"><span class="glyphicon glyphicon-education" aria-hidde="true"></span> Quiz</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#createModal"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Create</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#quizModal"><span class="glyphicon glyphicon-education" aria-hidde="true"></span> Quiz</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="logout.php"><span class="glyphicon glyphicon-remove" aria-hidde="true"></span> Logout</a></li>
@@ -115,6 +119,100 @@
     </a>
   </div> <!-- /.carousel -->
 
+  <!-- ::::::::::::::::::: Modals ::::::::::::::::::: -->
+
+  <!-- Create Modal -->
+  <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove-sign"aria-hidden="true"></span></button>
+          <h3 class="form-signin-heading" align="left">What would you like to create?</h3>
+        </div>
+        <div class="modal-body">
+          <center>
+          <button class="btn btn-hg btn-info" name="createCardButton" id="createCardButton" type="button" data-dismiss="modal" data-toggle="modal" data-target="#createCardModal">Create card</button>
+          <button class="btn btn-hg btn-info" name="createDeckButton" id="createDeckButton" type="button" data-dismiss="modal" data-toggle="modal" data-target="#createDeckModal">Create deck</button>
+          </center>
+        </div>
+        <div class="modal-footer bg-primary">
+          <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" aria-label="Close">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Card Modal -->
+  <div class="modal fade" id="createCardModal" tabindex="-1" role="dialog" aria-labelledby="createCardModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove-sign"aria-hidden="true"></span></button>
+          <h3 class="form-signin-heading" align="left">Create Card</h3>
+        </div>
+        <div class="modal-body">
+          <!-- Create card form -->
+          <center>
+            <p>Which deck would you like to create these cards in?</p>
+            <div class="form-group">
+              <button class="btn btn-lg btn-primary" name="createCardInDeckButton" id="createCardInDeckButton" type="button" data-toggle="dropdown">Select deck</button>
+            </div>
+          </center>
+        </div>
+        <div class="modal-footer bg-primary">
+          <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" aria-label="Close">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Deck Modal -->
+  <div class="modal fade" id="createDeckModal" tabindex="-1" role="dialog" aria-labelledby="createDeckModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove-sign"aria-hidden="true"></span></button>
+          <h3 class="form-signin-heading" align="left">Create Deck</h3>
+        </div>
+        <div class="modal-body">
+          <!-- Create deck Form -->
+          <form id="createDeckForm" name="createDeckForm">
+            <div class="form-group"><input type="text" name="inputDeckName" id="inputDeckName" class="form-control" placeholder="Deck name"></div>
+            <div class="form-group"><input type="text" name="inputDeckDesc" id="inputDeckDesc" class="form-control" placeholder="Deck description"></div>
+
+            <center><button class="btn btn-hg btn-info" name="createDeckFinalButton" id="createDeckFinalButton" type="submit">Create deck</button></center>
+          </form>
+        </div>
+        <div class="modal-footer bg-primary">
+          <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" aria-label="Close">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz Modal -->
+  <div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="quizModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-primary">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="glyphicon glyphicon-remove-sign"aria-hidden="true"></span></button>
+          <h3 class="form-signin-heading" align="left">Quiz</h3>
+        </div>
+        <div class="modal-body">
+          <!-- Create card form -->
+          <center>
+            <p>Which deck would you like to be quized on?</p>
+            <div class="form-group">
+              <button class="btn btn-lg btn-primary" name="quizButton" id="quizButton" type="button" data-toggle="dropdown">Select deck</button>
+            </div>
+          </center>
+        </div>
+        <div class="modal-footer bg-primary">
+          <button type="button" class="btn btn-danger btn-lg btn-block" data-dismiss="modal" aria-label="Close">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -123,32 +221,43 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- ::::::::::::::::::::: jQuery and AJAX ::::::::::::::::::::::
+    <!-- ::::::::::::::::::::: jQuery and AJAX :::::::::::::::::::::: -->
     <script>
     $(document).ready(function(){
-      var $item = $('.carousel .item');
-      var $wHeight = $(window).height();
-      $item.eq(0).addClass('active');
-      $item.height($wHeight);
-      $item.addClass('full-screen');
+      /*
+      * This is for the createDeck.php file.
+      */
+      $('#createDeckForm').on("submit",function(event){
+        event.preventDefault();
 
-      $('.carousel img').each(function() {
-        var $src = $(this).attr('src');
-        var $color = $(this).attr('data-color');
-        $(this).parent().css({
-          'background-image' : 'url(' + $src + ')',
-          'background-color' : $color
-        });
-        $(this).remove();
-      });
-
-      $(window).on('resize', function (){
-        $wHeight = $(window).height();
-        $item.height($wHeight);
+        if($('#inputDeckName').val() == ""){
+          alert("Please do not leave the entries blank.");
+        }
+        else if($('#inputDeckDesc').val() == ""){
+          alert("Please do not leave the entries blank.");
+        }
+        else{
+          $.ajax({
+            url:"createDeck.php",
+            method:"POST",
+            data:$('#createDeckForm').serialize(),
+            success:function(data){
+              if(data == "1"){
+                alert("Sucess! Your deck has been created. Please add some cards to get started!");
+              }
+              else if(data == "0"){
+                alert("You already have a deck under this name. Please try another name.");
+              }
+              else{
+                alert("Unknown error. Please try again.");
+              }
+            }
+          });
+        }
       });
     });
     </script>
--->
+
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
   </body>

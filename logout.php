@@ -10,9 +10,8 @@
 
   include("dbconfig.php"); //connects to our database
 
-  if(isset($_POST['action'])){
-    unset($_SESSION['username']);
-  }
+  unset($_SESSION['username']);
+  $_SESSION['loggedIn'] = false;
 
-  header('Location: index.html');
+  header('Location: /~fjp1010/bolt');
 ?>
